@@ -1,25 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import DoneColumn from './components/DoneColumn';
+import InProgressColumn from './components/InProgressColumn';
+import InReviewColumn from './components/InReviewColumn';
+import TodoColumn from './components/TodoColumn';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className='App'>
+			<TodoColumn />
+			<InProgressColumn />
+			<InReviewColumn />
+			<DoneColumn />
+		</div>
+	);
 }
 
 export default App;
