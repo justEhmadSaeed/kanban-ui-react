@@ -25,16 +25,25 @@ input[type='submit'] {
 	margin: 0 0 0 10px;
 }
 .add-new-btn {
-	width: 90%;
+	width: 33px;
+	border-radius: 50%;
+	height: 33px;
+	font-size: 30px;
+	position: fixed;
+	bottom: 98px;
+	left: 220px;
 	background-color: white;
 	border: none;
 	color: grey;
-	margin-top: 15px;
+	box-shadow: 2px 2px 4px grey;
+	transition: 0.3s transform ease-in-out;
 }
 .add-new-btn:hover {
-	text-decoration: underline;
-	color: black;
+	color: #625df5;
+	box-shadow: 2px 2px 6px #625df5bd;
+	transform: scale(1.2);
 }
+
 .col-body {
 	background-color: #e5e5e5;
 	padding: 5px;
@@ -60,7 +69,7 @@ input[type='submit'] {
 	text-align: left;
 	word-break: break-all;
 	color: #6b6b6b;
-	margin: 6px 0px;
+	margin: 15px 0px;
 }
 .tags-list {
 	display: flex;
@@ -94,7 +103,7 @@ input[type='submit'] {
 	border-radius: 5px;
 	width: 50%;
 }
-.close-icon{
+.close-icon {
 	font-size: 20px;
 }
 .flex-end {
@@ -168,6 +177,7 @@ input[type='submit'] {
 }
 .remove-tag:hover {
 	background-color: grey;
+	color: white;
 }
 .flex-center {
 	display: flex;

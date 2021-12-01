@@ -4,16 +4,19 @@ import ColumnBar from './ColumnBar';
 import ColumnBody from './ColumnBody';
 
 const TodoColumn = ({ setOpenPopUp }) => {
+	const addTaskButton = () => (
+		<button
+			className='add-new-btn'
+			onClick={() => setOpenPopUp(true)}
+		>
+			+
+		</button>
+	);
 	return (
 		<div id='todo-col'>
 			<ColumnBar icon={faListAlt} title='To Do' color='blue' />
-			<button
-				className='add-new-btn'
-				onClick={() => setOpenPopUp(true)}
-			>
-				+ Add New
-			</button>
-			<ColumnBody />
+
+			<ColumnBody addTaskButton={addTaskButton} />
 		</div>
 	);
 };
