@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import ColumnBar from './ColumnBar';
 import ColumnBody from './ColumnBody';
 
-const TodoColumn = ({ setOpenPopUp }) => {
+const TodoColumn = ({ setOpenPopUp, tasks }) => {
 	const addTaskButton = () => (
 		<button
 			className='add-new-btn'
@@ -13,10 +13,9 @@ const TodoColumn = ({ setOpenPopUp }) => {
 		</button>
 	);
 	return (
-		<div id='todo-col'>
+		<div className='task-column' id='todo-col'>
 			<ColumnBar icon={faListAlt} title='To Do' color='blue' />
-
-			<ColumnBody addTaskButton={addTaskButton} />
+			<ColumnBody tasks={tasks} addTaskButton={addTaskButton} />
 		</div>
 	);
 };

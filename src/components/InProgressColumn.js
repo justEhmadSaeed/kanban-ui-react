@@ -5,7 +5,7 @@ import ColumnBody from './ColumnBody';
 
 const InProgressColumn = () => {
 	return (
-		<div>
+		<div className='task-column'>
 			<ColumnBar
 				icon={faSpinner}
 				title='In Progress'

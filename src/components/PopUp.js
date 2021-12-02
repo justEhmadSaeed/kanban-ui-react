@@ -5,7 +5,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useRef, useState } from 'react';
 
-const PopUp = ({ setOpenPopUp }) => {
+const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 	const taskNumRef = useRef(null);
 	const taskDescRef = useRef(null);
 	const dueDateRef = useRef(null);
@@ -27,7 +27,7 @@ const PopUp = ({ setOpenPopUp }) => {
 			}
 			const tempTags = [...taskTags];
 			tempTags.push(taskTagRef.current.value);
-			taskTagRef.current.value = '';
+			// taskTagRef.current.value = '';
 			setTaskTags(tempTags);
 		} else {
 			alert('Tag value cannot be empty.');
@@ -41,7 +41,25 @@ const PopUp = ({ setOpenPopUp }) => {
 	};
 
 	const addTask = (e) => {
+		console.log('add');
 		e.preventDefault();
+		let errors = '';
+		if (!taskNumRef.current.value)
+			errors += 'Task Number cannot be empty.\n';
+		if (!taskDescRef.current.value)
+			errors += 'Task Description cannot be empty.\n';
+		if (!dueDateRef.current.value)
+			errors += 'Task Due Date cannot be empty.\n';
+
+		if (errors.length > 0) {
+			alert(errors);
+		} else {
+			addTodoTask({
+				taskNumber: taskNumRef.current.value,
+				taskDesc: taskDescRef.current.value,
+				types: taskTags,
+			});
+		}
 	};
 
 	return (
@@ -89,24 +107,12 @@ const PopUp = ({ setOpenPopUp }) => {
 					<div className='input-block'>
 						<label>Task Type: </label>
 						<div className='add-tag-block flex-center'>
-							<input
-								ref={taskTagRef}
-								type='text'
-								name='task-type'
-								placeholder='Task Tag'
-								list='tags'
-								onKeyDown={(e) => {
-									if (e.key === 'Enter') addTag();
-								}}
-							/>
-							<datalist id='tags'>
-								<option value='Bug' />
-								<option value='Feature' />
-								<option value='Improvement' />
-								<option value='Braking Issue' />
-								<option value='Story' />
-								<option value='Customer' />
-							</datalist>
+							<select ref={taskTagRef} id='task-types'>
+								<option value='Bug'>Bug</option>
+								<option value='Feature'>Feature</option>
+								<option value='Story'>Story</option>
+								<option value='Improvement'>Improvement</option>
+							</select>
 							<FontAwesomeIcon
 								icon={faPlusCircle}
 								color='green'
@@ -129,7 +135,7 @@ const PopUp = ({ setOpenPopUp }) => {
 						))}
 					</div>
 					<input
-						type='submit'
+						type='button'
 						value='Add Task'
 						className='add-task-btn'
 						onClick={addTask}

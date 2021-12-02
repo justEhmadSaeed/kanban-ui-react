@@ -5,7 +5,7 @@ import ColumnBody from './ColumnBody';
 
 const DoneColumn = () => {
 	return (
-		<div>
+		<div className='task-column'>
 			<ColumnBar icon={faCheckSquare} title='Done' color='green' />
 			<ColumnBody />
 		</div>

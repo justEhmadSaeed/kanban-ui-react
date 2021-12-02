@@ -1,6 +1,6 @@
 .App {
-	display: grid;
-	grid-template-columns: 24% 24% 24% 24%;
+	display: flex;
+	flex-wrap: wrap;
 	padding: 1rem;
 	text-align: center;
 	column-gap: 1%;
@@ -12,29 +12,44 @@ input[type='button'],
 input[type='submit'] {
 	cursor: pointer;
 }
+.task-column {
+	flex-grow: 1;
+	margin-top: 20px;
+	min-width: 200px;
+}
 .column-bar {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	padding: 1rem;
-	background-color: #e5e5e5;
-	border-radius: 20px;
-	box-shadow: 1px 2px 5px 0px grey;
+	background-color: #f1f1f1;
+	border-radius: 15px;
+	box-shadow: 2px 2px 4px #d9d9d9;
 }
 .column-heading {
 	margin: 0 0 0 10px;
 }
+.col-body {
+	display: flex;
+	flex-direction: column;
+	background-color: #f1f1f1;
+	padding: 5px;
+	border-radius: 7px;
+	height: 70vh;
+	overflow: auto;
+	margin-top: 2rem;
+}
 .add-new-btn {
 	width: 33px;
-	border-radius: 50%;
 	height: 33px;
+	align-self: flex-end;
+	border-radius: 50%;
 	font-size: 30px;
-	position: fixed;
-	bottom: 98px;
-	left: 220px;
 	background-color: white;
 	border: none;
 	color: grey;
+	margin-right: 12px;
+	margin-top: 9px;
 	box-shadow: 2px 2px 4px grey;
 	transition: 0.3s transform ease-in-out;
 }
@@ -44,14 +59,6 @@ input[type='submit'] {
 	transform: scale(1.2);
 }
 
-.col-body {
-	background-color: #e5e5e5;
-	padding: 5px;
-	border-radius: 7px;
-	height: 70vh;
-	overflow: auto;
-	margin-top: 2rem;
-}
 .card {
 	background-color: white;
 	border-radius: 12px;
@@ -134,7 +141,7 @@ input[type='submit'] {
 	width: 50%;
 	font-size: 15px;
 }
-.add-tag-block input[list='tags'] {
+#task-types {
 	width: 100%;
 	font-size: 15px;
 }
@@ -142,9 +149,6 @@ input[type='submit'] {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-#popUp-form .type-tag:hover .remove-tag {
-	visibility: visible;
 }
 .type-tag > p {
 	margin: 0 5px;
@@ -169,11 +173,17 @@ input[type='submit'] {
 	color: white;
 	align-self: center;
 }
+.add-task-btn:hover {
+	background-color: #1913c4;
+}
 .remove-tag {
-	visibility: hidden;
-	border-radius: 10px;
+	border-radius: 15px;
+	color: #575656;
 	background-color: transparent;
 	border: none;
+	width: 18px;
+	height: 18px;
+	padding: 0;
 }
 .remove-tag:hover {
 	background-color: grey;
@@ -183,4 +193,20 @@ input[type='submit'] {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+@media screen and (max-width: 700px) {
+	.popUp-body {
+		width: 90%;
+	}
+	.input-block {
+		/* flex-wrap: wrap; */
+		flex-direction: column;
+		align-items: center;
+	}
+	.add-tag-block {
+		width: 100%;
+	}
+	.input-block > input {
+		width: 100%;
+	}
 }

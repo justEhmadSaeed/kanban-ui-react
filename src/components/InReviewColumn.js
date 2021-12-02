@@ -5,7 +5,7 @@ import ColumnBody from './ColumnBody';
 
 const InReviewColumn = () => {
 	return (
-		<div>
+		<div className='task-column'>
 			<ColumnBar icon={faEye} title='In Review' color='purple' />
 			<ColumnBody />
 		</div>

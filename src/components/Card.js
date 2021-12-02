@@ -1,19 +1,16 @@
 import React from 'react';
 
-const Card = () => {
+const Card = ({ taskNumber, taskDesc, types = [] }) => {
 	return (
 		<div className='card'>
-			<h4 className='task-number'>Task - 29004</h4>
-			<p className='task-desc'>
-				Fix the
-				issuessdfndklgnkrnlgnsrhhitjhjrtihksdgdkfjgkldfjdfkjgdjfkjfk
-				reported in IE.
-			</p>
+			<h4 className='task-number'>Task - {taskNumber}</h4>
+			<p className='task-desc'>{taskDesc}</p>
 			<div className='tags-list'>
-				<div className='type-tag'>Bug</div>
-				<div className='type-tag'>Bug</div>
-				<div className='type-tag'>sfsff</div>
-				<div className='type-tag'>sfsff</div>
+				{types.map((tag, key) => (
+					<div className='type-tag' key={key}>
+						{tag}
+					</div>
+				))}
 			</div>
 		</div>
 	);
