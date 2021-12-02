@@ -7,7 +7,6 @@ const InProgressColumn = ({ transferTask, tasks }) => {
 	const onDragOver = (event) => {
 		event.preventDefault();
 	};
-	console.log(tasks);
 	const onDrop = (event) => {
 		const targetTaskNo = event.dataTransfer.getData('taskNo');
 		const sourceCol = event.dataTransfer.getData('taskColumn');

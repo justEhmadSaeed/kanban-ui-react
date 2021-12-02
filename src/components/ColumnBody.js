@@ -2,7 +2,6 @@ import React from 'react';
 import Card from './Card';
 
 const ColumnBody = ({ addTaskButton, tasks = [], taskColumn }) => {
-	console.log(tasks);
 	return (
 		<div className='col-body'>
 			{addTaskButton ? addTaskButton() : null}

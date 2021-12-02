@@ -15,8 +15,6 @@ function App() {
 		done: [],
 	});
 
-	console.log(taskList);
-
 	const addTodoTask = (todo) => {
 		// Duplicate Task Validation
 		const todoIndex = taskList.todo.findIndex(
@@ -55,8 +53,7 @@ function App() {
 		if (index === -1) {
 			return;
 		}
-		let todo = tempTasks[source].splice(index);
-		console.log(...todo);
+		let todo = tempTasks[source].splice(index, 1);
 		tempTasks[destination].push(...todo);
 		setTaskList(tempTasks);
 	};
