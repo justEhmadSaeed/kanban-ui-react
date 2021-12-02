@@ -5,7 +5,6 @@
 	text-align: center;
 	column-gap: 1%;
 }
-
 button,
 .btn,
 input[type='button'],
@@ -22,9 +21,9 @@ input[type='submit'] {
 	justify-content: center;
 	align-items: center;
 	padding: 1rem;
-	background-color: #f1f1f1;
+	background-color: #f1f1f194;
 	border-radius: 15px;
-	box-shadow: 2px 2px 4px #d9d9d9;
+	box-shadow: 2px 2px 4px #8d8b8b82;
 }
 .column-heading {
 	margin: 0 0 0 10px;
@@ -32,12 +31,21 @@ input[type='submit'] {
 .col-body {
 	display: flex;
 	flex-direction: column;
-	background-color: #f1f1f1;
+	/* background-color: #f1f1f1; */
 	padding: 5px;
 	border-radius: 7px;
 	height: 70vh;
 	overflow: auto;
 	margin-top: 2rem;
+	backdrop-filter: blur(16px) saturate(180%);
+	-webkit-backdrop-filter: blur(16px) saturate(180%);
+	background-image: linear-gradient(
+		to left,
+		rgba(137, 190, 243, 0.5),
+		rgba(217, 107, 194, 0.5)
+	);
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.125);
 }
 .add-new-btn {
 	width: 33px;
@@ -58,14 +66,37 @@ input[type='submit'] {
 	box-shadow: 2px 2px 6px #625df5bd;
 	transform: scale(1.2);
 }
-
 .card {
-	background-color: white;
+	background-color: #ffffff75;
 	border-radius: 12px;
-	border-left: 3px solid purple;
-	margin: 10px;
+	border-left: 5px solid purple;
+	border-right: 5px solid #ff623e;
+	margin-top: 10px;
 	padding: 8px 5px 8px 10px;
 	box-shadow: 1px 1px 2px grey;
+	width: 250px;
+	align-self: center;
+}
+.todo {
+	border-left-color: blue;
+}
+.inProgress {
+	border-left-color: orange;
+}
+.inReview {
+	border-left-color: purple;
+}
+.done {
+	border-left-color: green;
+}
+.Story {
+	border-right-color: #44c3c3;
+}
+.Feature {
+	border-right-color: #ff623e;
+}
+.Bug {
+	border-right-color: rgb(211, 0, 28);
 }
 .task-number {
 	margin: 0;
@@ -74,8 +105,8 @@ input[type='submit'] {
 }
 .task-desc {
 	text-align: left;
-	word-break: break-all;
-	color: #6b6b6b;
+	/* word-break: normal; */
+	color: #3e3e3e;
 	margin: 15px 0px;
 }
 .tags-list {
@@ -87,7 +118,7 @@ input[type='submit'] {
 }
 .type-tag {
 	color: #575656;
-	background-color: #e5e5e5;
+	background-color: white;
 	padding: 2px 7px;
 	border-radius: 7px;
 	margin: 0px 2px;
@@ -103,12 +134,13 @@ input[type='submit'] {
 	align-items: center;
 }
 .popUp-body {
-	background-color: white;
+	background-color: #ffffff99;
 	display: flex;
 	flex-direction: column;
 	padding: 1rem;
-	border-radius: 5px;
+	border-radius: 15px;
 	width: 50%;
+	backdrop-filter: blur(9px);
 }
 .close-icon {
 	font-size: 20px;
@@ -124,27 +156,36 @@ input[type='submit'] {
 .input-block {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	padding: 10px;
 }
 .input-block > label {
 	margin-right: 10px;
-	/* text-align: right; */
 }
 
 .input-block > input[type='text'],
 .input-block > input[type='date'],
-.input-block > input[type='number'] {
+.input-block > input[type='number'],
+.input-block > select {
+	background-color: transparent;
 	width: 50%;
 	font-size: 15px;
+	border: 1px solid white;
+	padding: 7px;
+	border-radius: 10px;
 }
-.add-tag-block {
+/* .add-tag-block {
 	width: 50%;
 	font-size: 15px;
-}
-#task-types {
+} */
+/* #task-types {
 	width: 100%;
 	font-size: 15px;
-}
+	background-color: transparent;
+	border: 1px solid white;
+	padding: 5px 7px;
+	border-radius: 6px;
+} */
 #popUp-form .type-tag {
 	display: flex;
 	justify-content: center;
@@ -160,10 +201,10 @@ input[type='submit'] {
 	row-gap: 10px;
 	align-items: center;
 }
-.add-tag-icon {
+/* .add-tag-icon {
 	margin-left: 5px;
 	font-size: 25px;
-}
+} */
 .add-task-btn {
 	width: 50%;
 	height: 40px;
@@ -172,52 +213,27 @@ input[type='submit'] {
 	background-color: #342df2;
 	color: white;
 	align-self: center;
+	border: none;
+	font-weight: 700;
 }
 .add-task-btn:hover {
 	background-color: #1913c4;
-}
-.remove-tag {
-	border-radius: 15px;
-	color: #575656;
-	background-color: transparent;
-	border: none;
-	width: 18px;
-	height: 18px;
-	padding: 0;
-}
-.remove-tag:hover {
-	background-color: grey;
-	color: white;
 }
 .flex-center {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-.todo {
-	border-left: 3px solid blue;
-}
-.inProgress {
-	border-left: 3px solid orange;
-}
-.inReview {
-	border-left: 3px solid purple;
-}
-.done {
-	border-left: 3px solid green;
-}
+
 @media screen and (max-width: 700px) {
 	.popUp-body {
 		width: 90%;
 	}
 	.input-block {
-		/* flex-wrap: wrap; */
 		flex-direction: column;
 		align-items: center;
 	}
-	.add-tag-block {
-		width: 100%;
-	}
+
 	.input-block > input {
 		width: 100%;
 	}
