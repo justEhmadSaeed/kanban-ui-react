@@ -13,31 +13,6 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 
 	const [taskTags, setTaskTags] = useState([]);
 
-	const addTag = () => {
-		if (taskTagRef.current.value) {
-			const index = taskTags.findIndex(
-				(tag) => tag === taskTagRef.current.value
-			);
-			// to prevent duplicate entries
-			if (index !== -1) {
-				alert('Tag has already been added.');
-				return;
-			}
-			const tempTags = [...taskTags];
-			tempTags.push(taskTagRef.current.value);
-			// taskTagRef.current.value = '';
-			setTaskTags(tempTags);
-		} else {
-			alert('Tag value cannot be empty.');
-		}
-	};
-
-	const removeTag = (index) => {
-		const tempTags = [...taskTags];
-		tempTags.splice(index, 1);
-		setTaskTags(tempTags);
-	};
-
 	const addTask = (e) => {
 		console.log('add');
 		e.preventDefault();
@@ -55,7 +30,7 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 			addTodoTask({
 				taskNumber: taskNumRef.current.value,
 				taskDesc: taskDescRef.current.value,
-				types: taskTags,
+				type: taskTagRef.current.value,
 			});
 		}
 	};
@@ -104,33 +79,11 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 					</div>
 					<div className='input-block'>
 						<label>Task Type: </label>
-						<div className='add-tag-block flex-center'>
-							<select ref={taskTagRef} id='task-types'>
-								<option value='Bug'>Bug</option>
-								<option value='Feature'>Feature</option>
-								<option value='Story'>Story</option>
-								<option value='Improvement'>Improvement</option>
-							</select>
-							<FontAwesomeIcon
-								icon={faPlusCircle}
-								color='green'
-								onClick={addTag}
-								className='btn add-tag-icon'
-							/>
-						</div>
-					</div>
-					<div className='tags-list'>
-						{taskTags.map((tag, key) => (
-							<div className='type-tag' key={key}>
-								<p>{tag}</p>
-								<input
-									className='remove-tag'
-									type='button'
-									value='x'
-									onClick={() => removeTag(key)}
-								/>
-							</div>
-						))}
+						<select ref={taskTagRef}>
+							<option value='Bug'>Bug</option>
+							<option value='Feature'>Feature</option>
+							<option value='Story'>Story</option>
+						</select>
 					</div>
 					<input
 						type='button'

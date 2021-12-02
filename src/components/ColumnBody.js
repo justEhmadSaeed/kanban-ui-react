@@ -10,7 +10,7 @@ const ColumnBody = ({ addTaskButton, tasks = [], taskColumn }) => {
 					key={key}
 					taskNumber={task.taskNumber}
 					taskDesc={task.taskDesc}
-					types={task.types}
+					type={task.type}
 					taskColumn={taskColumn}
 				/>
 			))}

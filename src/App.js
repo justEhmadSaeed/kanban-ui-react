@@ -9,10 +9,35 @@ import PopUp from './components/PopUp';
 function App() {
 	const [openPopUp, setOpenPopUp] = useState(false);
 	const [taskList, setTaskList] = useState({
-		todo: [],
-		inProgress: [],
-		inReview: [],
-		done: [],
+		todo: [
+			{
+				taskNumber: '29004',
+				taskDesc: 'Fix the issues reported in IE Browser.',
+				type: 'Bug',
+			},
+		],
+		inProgress: [
+			{
+				taskNumber: '29002',
+				taskDesc: 'Add responsive support.',
+				type: 'Story',
+			},
+		],
+		inReview: [
+			{
+				taskNumber: '29016',
+				taskDesc: 'Fix the issues reported in IE Browser.',
+				type: 'Bug',
+			},
+		],
+		done: [
+			{
+				taskNumber: '29018',
+				taskDesc:
+					'Arrange web meeting with customer to get login page requirement.',
+				type: 'Feature',
+			},
+		],
 	});
 
 	const addTodoTask = (todo) => {
