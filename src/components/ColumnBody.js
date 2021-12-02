@@ -1,7 +1,8 @@
 import React from 'react';
 import Card from './Card';
 
-const ColumnBody = ({ addTaskButton, tasks = [] }) => {
+const ColumnBody = ({ addTaskButton, tasks = [], taskColumn }) => {
+	console.log(tasks);
 	return (
 		<div className='col-body'>
 			{addTaskButton ? addTaskButton() : null}
@@ -11,6 +12,7 @@ const ColumnBody = ({ addTaskButton, tasks = [] }) => {
 					taskNumber={task.taskNumber}
 					taskDesc={task.taskDesc}
 					types={task.types}
+					taskColumn={taskColumn}
 				/>
 			))}
 		</div>

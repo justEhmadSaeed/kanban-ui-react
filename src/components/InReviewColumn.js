@@ -3,11 +3,28 @@ import React from 'react';
 import ColumnBar from './ColumnBar';
 import ColumnBody from './ColumnBody';
 
-const InReviewColumn = () => {
+const InReviewColumn = ({ transferTask, tasks }) => {
+	const onDragOver = (event) => {
+		event.preventDefault();
+	};
+	console.log(tasks);
+	const onDrop = (event) => {
+		const targetTaskNo = event.dataTransfer.getData('taskNo');
+		const sourceCol = event.dataTransfer.getData('taskColumn');
+		transferTask(targetTaskNo, sourceCol, 'inReview');
+	};
 	return (
-		<div className='task-column'>
+		<div
+			onDragOver={onDragOver}
+			onDrop={onDrop}
+			className='task-column'
+		>
 			<ColumnBar icon={faEye} title='In Review' color='purple' />
-			<ColumnBody />
+			<ColumnBody
+				taskColumn='inReview'
+				transferTask={transferTask}
+				tasks={tasks}
+			/>
 		</div>
 	);
 };

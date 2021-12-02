@@ -12,10 +12,8 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 	const taskTagRef = useRef(null);
 
 	const [taskTags, setTaskTags] = useState([]);
-	console.log(taskTags);
 
 	const addTag = () => {
-		console.log(taskTagRef.current.value);
 		if (taskTagRef.current.value) {
 			const index = taskTags.findIndex(
 				(tag) => tag === taskTagRef.current.value

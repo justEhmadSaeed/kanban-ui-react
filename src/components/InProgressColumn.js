@@ -3,15 +3,29 @@ import React from 'react';
 import ColumnBar from './ColumnBar';
 import ColumnBody from './ColumnBody';
 
-const InProgressColumn = () => {
+const InProgressColumn = ({ transferTask, tasks }) => {
+	const onDragOver = (event) => {
+		event.preventDefault();
+	};
+	console.log(tasks);
+	const onDrop = (event) => {
+		const targetTaskNo = event.dataTransfer.getData('taskNo');
+		const sourceCol = event.dataTransfer.getData('taskColumn');
+		transferTask(targetTaskNo, sourceCol, 'inProgress');
+	};
+
 	return (
-		<div className='task-column'>
+		<div
+			onDragOver={onDragOver}
+			onDrop={onDrop}
+			className='task-column'
+		>
 			<ColumnBar
 				icon={faSpinner}
 				title='In Progress'
 				color='orange'
 			/>
-			<ColumnBody />
+			<ColumnBody taskColumn='inProgress' tasks={tasks} />
 		</div>
 	);
 };

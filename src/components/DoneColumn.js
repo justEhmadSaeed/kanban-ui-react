@@ -3,11 +3,28 @@ import React from 'react';
 import ColumnBar from './ColumnBar';
 import ColumnBody from './ColumnBody';
 
-const DoneColumn = () => {
+const DoneColumn = ({ tasks, transferTask }) => {
+	const onDragOver = (event) => {
+		event.preventDefault();
+	};
+	console.log(tasks);
+	const onDrop = (event) => {
+		const targetTaskNo = event.dataTransfer.getData('taskNo');
+		const sourceCol = event.dataTransfer.getData('taskColumn');
+		transferTask(targetTaskNo, sourceCol, 'done');
+	};
 	return (
-		<div className='task-column'>
+		<div
+			onDragOver={onDragOver}
+			onDrop={onDrop}
+			className='task-column'
+		>
 			<ColumnBar icon={faCheckSquare} title='Done' color='green' />
-			<ColumnBody />
+			<ColumnBody
+				taskColumn='done'
+				tasks={tasks}
+				transferTask={transferTask}
+			/>
 		</div>
 	);
 };

@@ -194,6 +194,18 @@ input[type='submit'] {
 	justify-content: center;
 	align-items: center;
 }
+.todo {
+	border-left: 3px solid blue;
+}
+.inProgress {
+	border-left: 3px solid orange;
+}
+.inReview {
+	border-left: 3px solid purple;
+}
+.done {
+	border-left: 3px solid green;
+}
 @media screen and (max-width: 700px) {
 	.popUp-body {
 		width: 90%;

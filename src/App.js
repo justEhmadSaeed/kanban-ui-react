@@ -47,6 +47,20 @@ function App() {
 		}
 	};
 
+	const transferTask = (taskNo, source, destination) => {
+		const tempTasks = { ...taskList };
+		const index = tempTasks[source].findIndex(
+			(todo) => todo.taskNumber === taskNo
+		);
+		if (index === -1) {
+			return;
+		}
+		let todo = tempTasks[source].splice(index);
+		console.log(...todo);
+		tempTasks[destination].push(...todo);
+		setTaskList(tempTasks);
+	};
+
 	return (
 		<>
 			{openPopUp ? (
@@ -61,10 +75,20 @@ function App() {
 					setOpenPopUp={setOpenPopUp}
 					addTodoTask={addTodoTask}
 					tasks={taskList.todo}
+					transferTask={transferTask}
 				/>
-				<InProgressColumn />
-				<InReviewColumn />
-				<DoneColumn />
+				<InProgressColumn
+					tasks={taskList.inProgress}
+					transferTask={transferTask}
+				/>
+				<InReviewColumn
+					tasks={taskList.inReview}
+					transferTask={transferTask}
+				/>
+				<DoneColumn
+					tasks={taskList.done}
+					transferTask={transferTask}
+				/>
 			</div>
 		</>
 	);
