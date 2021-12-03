@@ -144,6 +144,10 @@ input[type='submit'] {
 }
 .close-icon {
 	font-size: 20px;
+	transition: 0.3s transform ease-in-out;
+}
+.close-icon:hover {
+	transform: scale(1.2);
 }
 .flex-end {
 	align-self: flex-end;

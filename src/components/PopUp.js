@@ -1,17 +1,12 @@
-import {
-	faPlusCircle,
-	faTimesCircle,
-} from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 	const taskNumRef = useRef(null);
 	const taskDescRef = useRef(null);
 	const dueDateRef = useRef(null);
 	const taskTagRef = useRef(null);
-
-	const [taskTags, setTaskTags] = useState([]);
 
 	const addTask = (e) => {
 		console.log('add');
@@ -45,7 +40,7 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 						onClick={() => setOpenPopUp(false)}
 					/>
 				</div>
-				<form id='popUp-form'>
+				<form autoComplete='off' id='popUp-form'>
 					<div className='input-block'>
 						<label>Task Number: </label>
 						<input
