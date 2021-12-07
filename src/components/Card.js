@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ColumnType, TaskType } from '../utils/constants';
+import { ColumnType, TaskType } from 'utils/constants';
 
 const Card = ({ taskNumber, taskDesc, taskType, taskColumn }) => {
 	const onDragStart = (event, taskNo) => {

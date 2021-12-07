@@ -1,8 +1,8 @@
 import React from 'react';
-import ColumnBar from './ColumnBar';
-import ColumnBody from './ColumnBody';
+import ColumnBar from 'components/ColumnBar';
+import ColumnBody from 'components/ColumnBody';
 import PropTypes from 'prop-types';
-import { ColumnType, ColumnTypeProperties } from '../utils/constants';
+import { ColumnType, ColumnTypeProperties } from 'utils/constants';
 
 const Column = ({
 	addTaskButton,

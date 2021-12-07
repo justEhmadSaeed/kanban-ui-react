@@ -2,7 +2,7 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { TaskType } from '../utils/constants';
+import { TaskType } from 'utils/constants';
 
 const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 	const [taskValues, setTaskValues] = useState({

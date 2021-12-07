@@ -1,7 +1,7 @@
 import React from 'react';
-import Card from './Card';
+import Card from 'components/Card';
 import PropTypes from 'prop-types';
-import { ColumnType } from '../utils/constants';
+import { ColumnType } from 'utils/constants';
 
 const ColumnBody = ({ addTaskButton, tasks, taskColumn }) => {
 	return (
