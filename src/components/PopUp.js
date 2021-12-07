@@ -1,34 +1,41 @@
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { TaskType } from '../utils/constants';
 
 const PopUp = ({ setOpenPopUp, addTodoTask }) => {
-	const taskNumRef = useRef(null);
-	const taskDescRef = useRef(null);
-	const dueDateRef = useRef(null);
-	const taskTagRef = useRef(null);
+	const [taskValues, setTaskValues] = useState({
+		taskNum: '',
+		taskDesc: '',
+		dueDate: '',
+		taskTag: '',
+	});
+
+	const { taskNum, taskDesc, dueDate, taskTag } = taskValues;
 
 	const addTask = (e) => {
 		e.preventDefault();
 		let errors = '';
-		if (!taskNumRef.current.value)
-			errors += 'Task Number cannot be empty.\n';
-		if (!taskDescRef.current.value)
-			errors += 'Task Description cannot be empty.\n';
-		if (!dueDateRef.current.value)
-			errors += 'Task Due Date cannot be empty.\n';
+		if (!taskNum) errors += 'Task Number cannot be empty.\n';
+		if (!taskDesc) errors += 'Task Description cannot be empty.\n';
+		if (!dueDate) errors += 'Task Due Date cannot be empty.\n';
 
 		if (errors.length > 0) {
 			alert(errors);
 		} else {
 			addTodoTask({
-				taskNumber: taskNumRef.current.value,
-				taskDesc: taskDescRef.current.value,
-				type: taskTagRef.current.value,
+				taskNumber: taskNum,
+				taskDesc: taskDesc,
+				type: taskTag,
 			});
 		}
+	};
+	const onChangeHandler = (name) => (event) => {
+		setTaskValues({
+			...taskValues,
+			[name]: event.target.value,
+		});
 	};
 
 	return (
@@ -47,10 +54,11 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 						<input
 							type='number'
 							name='task-number'
+							value={taskNum}
+							onChange={onChangeHandler('taskNum')}
 							id='task-number'
 							placeholder='Task Number'
 							autoFocus
-							ref={taskNumRef}
 							required
 						/>
 					</div>
@@ -59,23 +67,28 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 						<input
 							type='text'
 							name='task-desc'
+							value={taskDesc}
+							onChange={onChangeHandler('taskDesc')}
 							placeholder='Task Description'
-							ref={taskDescRef}
 							required
 						/>
 					</div>
 					<div className='input-block'>
 						<label>Task Due Date: </label>
 						<input
-							ref={dueDateRef}
 							type='date'
 							name='task-desc'
+							value={dueDate}
+							onChange={onChangeHandler('dueDate')}
 							required
 						/>
 					</div>
 					<div className='input-block'>
 						<label>Task Type: </label>
-						<select ref={taskTagRef}>
+						<select
+							value={taskTag}
+							onChange={onChangeHandler('taskTag')}
+						>
 							{Object.values(TaskType).map((type, key) => (
 								<option value={type} key={key}>
 									{type}
