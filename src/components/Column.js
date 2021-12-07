@@ -1,9 +1,8 @@
-import { faListAlt } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import ColumnBar from './ColumnBar';
 import ColumnBody from './ColumnBody';
 import PropTypes from 'prop-types';
-import { ColumnType } from '../utils/constants';
+import { ColumnType, ColumnTypeProperties } from '../utils/constants';
 
 const Column = ({
 	addTaskButton,
@@ -16,7 +15,6 @@ const Column = ({
 	};
 	const onDrop = (event) => {
 		const targetTaskNo = event.dataTransfer.getData('taskNo');
-		// const sourceCol = event.dataTransfer.getData('taskColumn');
 		transferTask(targetTaskNo, columnType);
 	};
 	return (
@@ -25,7 +23,11 @@ const Column = ({
 			onDrop={onDrop}
 			className='task-column'
 		>
-			<ColumnBar icon={faListAlt} title={columnType} color='blue' />
+			<ColumnBar
+				title={columnType}
+				icon={ColumnTypeProperties[columnType].icon}
+				color={ColumnTypeProperties[columnType].color}
+			/>
 			<ColumnBody
 				tasks={tasks}
 				addTaskButton={addTaskButton}
