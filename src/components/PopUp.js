@@ -1,6 +1,8 @@
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
+import { TaskType } from '../utils/constants';
 
 const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 	const taskNumRef = useRef(null);
@@ -9,7 +11,6 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 	const taskTagRef = useRef(null);
 
 	const addTask = (e) => {
-		console.log('add');
 		e.preventDefault();
 		let errors = '';
 		if (!taskNumRef.current.value)
@@ -75,9 +76,11 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 					<div className='input-block'>
 						<label>Task Type: </label>
 						<select ref={taskTagRef}>
-							<option value='Bug'>Bug</option>
-							<option value='Feature'>Feature</option>
-							<option value='Story'>Story</option>
+							{Object.values(TaskType).map((type, key) => (
+								<option value={type} key={key}>
+									{type}
+								</option>
+							))}
 						</select>
 					</div>
 					<input
@@ -92,4 +95,12 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 	);
 };
 
+PopUp.propTypes = {
+	setOpenPopUp: PropTypes.func.isRequired,
+	addTodoTask: PropTypes.func.isRequired,
+};
+PopUp.defaultProps = {
+	setOpenPopUp: undefined,
+	addTodoTask: undefined,
+};
 export default PopUp;

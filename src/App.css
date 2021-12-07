@@ -77,25 +77,25 @@ input[type='submit'] {
 	width: 250px;
 	align-self: center;
 }
-.todo {
+.TOOD {
 	border-left-color: blue;
 }
-.inProgress {
+.IN_PROGRESS {
 	border-left-color: orange;
 }
-.inReview {
+.IN_REVIEW {
 	border-left-color: purple;
 }
-.done {
+.DONE {
 	border-left-color: green;
 }
-.Story {
+.STORY {
 	border-right-color: #44c3c3;
 }
-.Feature {
+.FEATURE {
 	border-right-color: #ff623e;
 }
-.Bug {
+.BUG {
 	border-right-color: rgb(211, 0, 28);
 }
 .task-number {
