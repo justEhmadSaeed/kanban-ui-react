@@ -8,7 +8,7 @@ const Column = ({
 	addTaskButton,
 	tasks,
 	transferTask,
-	columnType,
+	columnType
 }) => {
 	const onDragOver = (event) => {
 		event.preventDefault();
@@ -21,7 +21,7 @@ const Column = ({
 		<div
 			onDragOver={onDragOver}
 			onDrop={onDrop}
-			className='task-column'
+			className="task-column"
 		>
 			<ColumnBar
 				title={columnType}
@@ -42,13 +42,13 @@ Column.propTypes = {
 	addTaskButton: PropTypes.func,
 	tasks: PropTypes.array,
 	transferTask: PropTypes.func.isRequired,
-	columnType: PropTypes.oneOf(Object.values(ColumnType)).isRequired,
+	columnType: PropTypes.oneOf(Object.values(ColumnType)).isRequired
 };
 
 Column.defaultProps = {
 	addTaskButton: undefined,
 	tasks: [],
 	transferTask: undefined,
-	columnType: ColumnType.TODO,
+	columnType: ColumnType.TODO
 };
 export default Column;

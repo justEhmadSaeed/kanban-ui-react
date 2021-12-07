@@ -6,31 +6,31 @@ import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 export const TaskType = {
 	BUG: 'BUG',
 	FEATURE: 'FEATURE',
-	STORY: 'STORY',
+	STORY: 'STORY'
 };
 
 export const ColumnType = {
 	TODO: 'TODO',
 	IN_PROGRESS: 'IN_PROGRESS',
 	IN_REVIEW: 'IN_REVIEW',
-	DONE: 'DONE',
+	DONE: 'DONE'
 };
 
 export const ColumnTypeProperties = {
 	[ColumnType.TODO]: {
 		color: 'blue',
-		icon: faListAlt,
+		icon: faListAlt
 	},
 	[ColumnType.IN_PROGRESS]: {
 		color: 'orange',
-		icon: faSpinner,
+		icon: faSpinner
 	},
 	[ColumnType.IN_REVIEW]: {
 		color: 'purple',
-		icon: faEye,
+		icon: faEye
 	},
 	[ColumnType.DONE]: {
 		color: 'green',
-		icon: faCheckSquare,
-	},
+		icon: faCheckSquare
+	}
 };

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 
 const ColumnBar = ({ title, icon, color }) => {
 	return (
-		<nav className='column-bar'>
+		<nav className="column-bar">
 			<FontAwesomeIcon icon={icon} color={color} />
-			<h4 className='column-heading'>{title}</h4>
+			<h4 className="column-heading">{title}</h4>
 		</nav>
 	);
 };
@@ -15,12 +15,12 @@ const ColumnBar = ({ title, icon, color }) => {
 ColumnBar.propTypes = {
 	title: PropTypes.string,
 	icon: PropTypes.object,
-	color: PropTypes.string,
+	color: PropTypes.string
 };
 
 ColumnBar.defaultProps = {
 	title: '',
 	icon: { faListAlt },
-	color: '',
+	color: ''
 };
 export default ColumnBar;

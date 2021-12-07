@@ -11,32 +11,32 @@ function App() {
 			taskNumber: '29004',
 			taskDesc: 'Fix the issues reported in IE Browser.',
 			type: TaskType.BUG,
-			columnType: ColumnType.TODO,
+			columnType: ColumnType.TODO
 		},
 		{
 			taskNumber: '29002',
 			taskDesc: 'Add responsive support.',
 			type: TaskType.STORY,
-			columnType: ColumnType.IN_PROGRESS,
+			columnType: ColumnType.IN_PROGRESS
 		},
 		{
 			taskNumber: '29016',
 			taskDesc: 'Fix the issues reported in IE Browser.',
 			type: TaskType.FEATURE,
-			columnType: ColumnType.IN_REVIEW,
+			columnType: ColumnType.IN_REVIEW
 		},
 		{
 			taskNumber: '29018',
 			taskDesc:
 				'Arrange web meeting with customer to get login page requirement.',
 			type: TaskType.BUG,
-			columnType: ColumnType.DONE,
-		},
+			columnType: ColumnType.DONE
+		}
 	]);
 	// Add Task Button only
 	const addTaskButton = () => (
 		<button
-			className='add-new-btn'
+			className="add-new-btn"
 			onClick={() => setOpenPopUp(true)}
 		>
 			+
@@ -83,7 +83,7 @@ function App() {
 				/>
 			) : null}
 
-			<div className='App'>
+			<div className="App">
 				<Column
 					setOpenPopUp={setOpenPopUp}
 					addTodoTask={addTodoTask}
@@ -96,14 +96,16 @@ function App() {
 				/>
 				<Column
 					tasks={taskList.filter(
-						(task) => task.columnType === ColumnType.IN_PROGRESS
+						(task) =>
+							task.columnType === ColumnType.IN_PROGRESS
 					)}
 					transferTask={transferTask}
 					columnType={ColumnType.IN_PROGRESS}
 				/>
 				<Column
 					tasks={taskList.filter(
-						(task) => task.columnType === ColumnType.IN_REVIEW
+						(task) =>
+							task.columnType === ColumnType.IN_REVIEW
 					)}
 					transferTask={transferTask}
 					columnType={ColumnType.IN_REVIEW}
