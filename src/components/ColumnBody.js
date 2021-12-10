@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from 'components/Card';
+import Card from 'Components/Card';
 import PropTypes from 'prop-types';
 import { ColumnType } from 'utils/constants';
 

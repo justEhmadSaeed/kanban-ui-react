@@ -10,7 +10,6 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 		dueDate: '',
 		taskTag: TaskType.BUG
 	});
-
 	const { taskDesc, dueDate, taskTag } = taskValues;
 
 	const addTask = (e) => {
@@ -48,7 +47,9 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 				</div>
 				<form autoComplete="off" id="popUp-form">
 					<div className="input-block">
-						<label>Task Description: </label>
+						<label htmlFor="task-desc">
+							Task Description:{' '}
+						</label>
 						<input
 							type="text"
 							name="task-desc"
@@ -56,22 +57,24 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 							onChange={onChangeHandler('taskDesc')}
 							placeholder="Task Description"
 							required
-							autoFocus
 						/>
 					</div>
 					<div className="input-block">
-						<label>Task Due Date: </label>
+						<label htmlFor="task-date">
+							Task Due Date:{' '}
+						</label>
 						<input
 							type="date"
-							name="task-desc"
+							name="task-date"
 							value={dueDate}
 							onChange={onChangeHandler('dueDate')}
 							required
 						/>
 					</div>
 					<div className="input-block">
-						<label>Task Type: </label>
+						<label htmlFor="task-tag">Task Type: </label>
 						<select
+							name="task-tag"
 							value={taskTag}
 							onChange={onChangeHandler('taskTag')}
 						>
