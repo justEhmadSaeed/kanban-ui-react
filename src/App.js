@@ -1,8 +1,8 @@
 import 'App.css';
 import React, { useState } from 'react';
-import PopUp from 'Components/PopUp';
+import PopUp from 'components/PopUp';
 import { ColumnType, TaskType } from 'utils/constants';
-import Column from 'Components/Column';
+import Column from 'components/Column';
 
 function App() {
 	const [openPopUp, setOpenPopUp] = useState(false);

@@ -16,7 +16,10 @@
             "warn",
             "tab"
         ],
-        "linebreak-style": 1,
+        "linebreak-style": [
+            "warn",
+            "windows"
+        ],
         "quotes": [
             "warn",
             "single"
