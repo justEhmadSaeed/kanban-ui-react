@@ -6,18 +6,16 @@ import { TaskType } from 'utils/constants';
 
 const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 	const [taskValues, setTaskValues] = useState({
-		taskNum: '',
 		taskDesc: '',
 		dueDate: '',
-		taskTag: ''
+		taskTag: TaskType.BUG
 	});
 
-	const { taskNum, taskDesc, dueDate, taskTag } = taskValues;
+	const { taskDesc, dueDate, taskTag } = taskValues;
 
 	const addTask = (e) => {
 		e.preventDefault();
 		let errors = '';
-		if (!taskNum) errors += 'Task Number cannot be empty.\n';
 		if (!taskDesc)
 			errors += 'Task Description cannot be empty.\n';
 		if (!dueDate) errors += 'Task Due Date cannot be empty.\n';
@@ -26,7 +24,6 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 			alert(errors);
 		} else {
 			addTodoTask({
-				taskNumber: taskNum,
 				taskDesc: taskDesc,
 				type: taskTag
 			});
@@ -51,19 +48,6 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 				</div>
 				<form autoComplete="off" id="popUp-form">
 					<div className="input-block">
-						<label>Task Number: </label>
-						<input
-							type="number"
-							name="task-number"
-							value={taskNum}
-							onChange={onChangeHandler('taskNum')}
-							id="task-number"
-							placeholder="Task Number"
-							autoFocus
-							required
-						/>
-					</div>
-					<div className="input-block">
 						<label>Task Description: </label>
 						<input
 							type="text"
@@ -72,6 +56,7 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 							onChange={onChangeHandler('taskDesc')}
 							placeholder="Task Description"
 							required
+							autoFocus
 						/>
 					</div>
 					<div className="input-block">

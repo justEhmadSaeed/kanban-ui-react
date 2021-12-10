@@ -22,14 +22,14 @@ const Card = ({ taskNumber, taskDesc, taskType, taskColumn }) => {
 	);
 };
 Card.propTypes = {
-	taskNumber: PropTypes.string,
+	taskNumber: PropTypes.number,
 	taskDesc: PropTypes.string,
 	taskType: PropTypes.oneOf(Object.values(TaskType)),
 	taskColumn: PropTypes.oneOf(Object.values(ColumnType))
 };
 
 Card.defaultProps = {
-	taskNumber: '#',
+	taskNumber: -1,
 	taskDesc: '...',
 	taskType: TaskType.STORY,
 	taskColumn: ColumnType.TODO

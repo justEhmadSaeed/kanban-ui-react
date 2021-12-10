@@ -8,25 +8,25 @@ function App() {
 	const [openPopUp, setOpenPopUp] = useState(false);
 	const [taskList, setTaskList] = useState([
 		{
-			taskNumber: '29004',
+			taskNumber: 0,
 			taskDesc: 'Fix the issues reported in IE Browser.',
 			type: TaskType.BUG,
 			columnType: ColumnType.TODO
 		},
 		{
-			taskNumber: '29002',
+			taskNumber: 1,
 			taskDesc: 'Add responsive support.',
 			type: TaskType.STORY,
 			columnType: ColumnType.IN_PROGRESS
 		},
 		{
-			taskNumber: '29016',
+			taskNumber: 2,
 			taskDesc: 'Fix the issues reported in IE Browser.',
 			type: TaskType.FEATURE,
 			columnType: ColumnType.IN_REVIEW
 		},
 		{
-			taskNumber: '29018',
+			taskNumber: 3,
 			taskDesc:
 				'Arrange web meeting with customer to get login page requirement.',
 			type: TaskType.BUG,
@@ -44,28 +44,19 @@ function App() {
 	);
 	// Add task from pop-up to todo-column
 	const addTodoTask = (todo) => {
-		// Duplicate Task Validation
-		const index = taskList.findIndex(
-			(item) => item.taskNumber === todo.taskNumber
-		);
-
-		if (index !== -1) {
-			alert(
-				`Task Number already exists in ${taskList[index].columnType} Tasks.`
-			);
-		} else {
-			todo.columnType = ColumnType.TODO;
-			const tempTasks = [...taskList];
-			tempTasks.push(todo);
-			setTaskList(tempTasks);
-			setOpenPopUp(false);
-		}
+		todo.columnType = ColumnType.TODO;
+		todo.taskNumber =
+			taskList[taskList.length - 1].taskNumber + 1;
+		const tempTasks = [...taskList];
+		tempTasks.push(todo);
+		setTaskList(tempTasks);
+		setOpenPopUp(false);
 	};
 	// transfer task from one column to other
 	const transferTask = (taskNo, destination) => {
 		const tempTasks = [...taskList];
 		const index = tempTasks.findIndex(
-			(todo) => todo.taskNumber === taskNo
+			(todo) => todo.taskNumber === parseInt(taskNo)
 		);
 		if (index === -1) {
 			return;
@@ -73,7 +64,6 @@ function App() {
 		taskList[index].columnType = destination;
 		setTaskList(tempTasks);
 	};
-
 	return (
 		<>
 			{openPopUp ? (
