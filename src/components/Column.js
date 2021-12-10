@@ -1,6 +1,6 @@
 import React from 'react';
-import ColumnBar from 'Components/ColumnBar';
-import ColumnBody from 'Components/ColumnBody';
+import ColumnBar from 'components/ColumnBar';
+import ColumnBody from 'components/ColumnBody';
 import PropTypes from 'prop-types';
 import { ColumnType, ColumnTypeProperties } from 'utils/constants';
 
