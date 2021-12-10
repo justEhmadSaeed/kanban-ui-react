@@ -1,88 +1,69 @@
-import './App.css';
+import 'App.css';
 import React, { useState } from 'react';
-import DoneColumn from './components/DoneColumn';
-import InProgressColumn from './components/InProgressColumn';
-import InReviewColumn from './components/InReviewColumn';
-import TodoColumn from './components/TodoColumn';
-import PopUp from './components/PopUp';
+import PopUp from 'Components/PopUp';
+import { ColumnType, TaskType } from 'utils/constants';
+import Column from 'Components/Column';
 
 function App() {
 	const [openPopUp, setOpenPopUp] = useState(false);
-	const [taskList, setTaskList] = useState({
-		todo: [
-			{
-				taskNumber: '29004',
-				taskDesc: 'Fix the issues reported in IE Browser.',
-				type: 'Bug',
-			},
-		],
-		inProgress: [
-			{
-				taskNumber: '29002',
-				taskDesc: 'Add responsive support.',
-				type: 'Story',
-			},
-		],
-		inReview: [
-			{
-				taskNumber: '29016',
-				taskDesc: 'Fix the issues reported in IE Browser.',
-				type: 'Bug',
-			},
-		],
-		done: [
-			{
-				taskNumber: '29018',
-				taskDesc:
-					'Arrange web meeting with customer to get login page requirement.',
-				type: 'Feature',
-			},
-		],
-	});
-
-	const addTodoTask = (todo) => {
-		// Duplicate Task Validation
-		const todoIndex = taskList.todo.findIndex(
-			(item) => item.taskNumber === todo.taskNumber
-		);
-		const inProgressIndex = taskList.inProgress.findIndex(
-			(item) => item.taskNumber === todo.taskNumber
-		);
-		const inReviewIndex = taskList.inReview.findIndex(
-			(item) => item.taskNumber === todo.taskNumber
-		);
-		const doneIndex = taskList.done.findIndex(
-			(item) => item.taskNumber === todo.taskNumber
-		);
-		if (todoIndex !== -1) {
-			alert('Task Number already exists in Todo Tasks.');
-		} else if (inProgressIndex !== -1) {
-			alert('Task Number already exists in In-Progress Tasks.');
-		} else if (inReviewIndex !== -1) {
-			alert('Task Number already exists in In-Review Tasks.');
-		} else if (doneIndex !== -1) {
-			alert('Task Number already exists in Done Tasks.');
-		} else {
-			const tempTasks = { ...taskList };
-			tempTasks.todo.push(todo);
-			setTaskList(tempTasks);
-			setOpenPopUp(false);
+	const [taskList, setTaskList] = useState([
+		{
+			taskNumber: 0,
+			taskDesc: 'Fix the issues reported in IE Browser.',
+			type: TaskType.BUG,
+			columnType: ColumnType.TODO
+		},
+		{
+			taskNumber: 1,
+			taskDesc: 'Add responsive support.',
+			type: TaskType.STORY,
+			columnType: ColumnType.IN_PROGRESS
+		},
+		{
+			taskNumber: 2,
+			taskDesc: 'Fix the issues reported in IE Browser.',
+			type: TaskType.FEATURE,
+			columnType: ColumnType.IN_REVIEW
+		},
+		{
+			taskNumber: 3,
+			taskDesc:
+				'Arrange web meeting with customer to get login page requirement.',
+			type: TaskType.BUG,
+			columnType: ColumnType.DONE
 		}
+	]);
+	// Add Task Button only
+	const addTaskButton = () => (
+		<button
+			className="add-new-btn"
+			onClick={() => setOpenPopUp(true)}
+		>
+			+
+		</button>
+	);
+	// Add task from pop-up to todo-column
+	const addTodoTask = (todo) => {
+		todo.columnType = ColumnType.TODO;
+		todo.taskNumber =
+			taskList[taskList.length - 1].taskNumber + 1;
+		const tempTasks = [...taskList];
+		tempTasks.push(todo);
+		setTaskList(tempTasks);
+		setOpenPopUp(false);
 	};
-
-	const transferTask = (taskNo, source, destination) => {
-		const tempTasks = { ...taskList };
-		const index = tempTasks[source].findIndex(
-			(todo) => todo.taskNumber === taskNo
+	// transfer task from one column to other
+	const transferTask = (taskNo, destination) => {
+		const tempTasks = [...taskList];
+		const index = tempTasks.findIndex(
+			(todo) => todo.taskNumber === parseInt(taskNo)
 		);
 		if (index === -1) {
 			return;
 		}
-		let todo = tempTasks[source].splice(index, 1);
-		tempTasks[destination].push(...todo);
+		taskList[index].columnType = destination;
 		setTaskList(tempTasks);
 	};
-
 	return (
 		<>
 			{openPopUp ? (
@@ -92,24 +73,39 @@ function App() {
 				/>
 			) : null}
 
-			<div className='App'>
-				<TodoColumn
+			<div className="App">
+				<Column
 					setOpenPopUp={setOpenPopUp}
 					addTodoTask={addTodoTask}
-					tasks={taskList.todo}
+					tasks={taskList.filter(
+						(task) => task.columnType === ColumnType.TODO
+					)}
 					transferTask={transferTask}
+					addTaskButton={addTaskButton}
+					columnType={ColumnType.TODO}
 				/>
-				<InProgressColumn
-					tasks={taskList.inProgress}
+				<Column
+					tasks={taskList.filter(
+						(task) =>
+							task.columnType === ColumnType.IN_PROGRESS
+					)}
 					transferTask={transferTask}
+					columnType={ColumnType.IN_PROGRESS}
 				/>
-				<InReviewColumn
-					tasks={taskList.inReview}
+				<Column
+					tasks={taskList.filter(
+						(task) =>
+							task.columnType === ColumnType.IN_REVIEW
+					)}
 					transferTask={transferTask}
+					columnType={ColumnType.IN_REVIEW}
 				/>
-				<DoneColumn
-					tasks={taskList.done}
+				<Column
+					tasks={taskList.filter(
+						(task) => task.columnType === ColumnType.DONE
+					)}
 					transferTask={transferTask}
+					columnType={ColumnType.DONE}
 				/>
 			</div>
 		</>

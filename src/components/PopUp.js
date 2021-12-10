@@ -1,89 +1,96 @@
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { TaskType } from 'utils/constants';
 
 const PopUp = ({ setOpenPopUp, addTodoTask }) => {
-	const taskNumRef = useRef(null);
-	const taskDescRef = useRef(null);
-	const dueDateRef = useRef(null);
-	const taskTagRef = useRef(null);
+	const [taskValues, setTaskValues] = useState({
+		taskDesc: '',
+		dueDate: '',
+		taskTag: TaskType.BUG
+	});
+	const { taskDesc, dueDate, taskTag } = taskValues;
 
 	const addTask = (e) => {
-		console.log('add');
 		e.preventDefault();
 		let errors = '';
-		if (!taskNumRef.current.value)
-			errors += 'Task Number cannot be empty.\n';
-		if (!taskDescRef.current.value)
+		if (!taskDesc)
 			errors += 'Task Description cannot be empty.\n';
-		if (!dueDateRef.current.value)
-			errors += 'Task Due Date cannot be empty.\n';
+		if (!dueDate) errors += 'Task Due Date cannot be empty.\n';
 
 		if (errors.length > 0) {
 			alert(errors);
 		} else {
 			addTodoTask({
-				taskNumber: taskNumRef.current.value,
-				taskDesc: taskDescRef.current.value,
-				type: taskTagRef.current.value,
+				taskDesc: taskDesc,
+				type: taskTag
 			});
 		}
 	};
+	const onChangeHandler = (name) => (event) => {
+		setTaskValues({
+			...taskValues,
+			[name]: event.target.value
+		});
+	};
 
 	return (
-		<div className='popUp'>
-			<div className='popUp-body'>
-				<div className='flex-end'>
+		<div className="popUp">
+			<div className="popUp-body">
+				<div className="flex-end">
 					<FontAwesomeIcon
 						icon={faTimesCircle}
-						className='btn close-icon'
+						className="btn close-icon"
 						onClick={() => setOpenPopUp(false)}
 					/>
 				</div>
-				<form autoComplete='off' id='popUp-form'>
-					<div className='input-block'>
-						<label>Task Number: </label>
+				<form autoComplete="off" id="popUp-form">
+					<div className="input-block">
+						<label htmlFor="task-desc">
+							Task Description:{' '}
+						</label>
 						<input
-							type='number'
-							name='task-number'
-							id='task-number'
-							placeholder='Task Number'
-							autoFocus
-							ref={taskNumRef}
+							type="text"
+							name="task-desc"
+							value={taskDesc}
+							onChange={onChangeHandler('taskDesc')}
+							placeholder="Task Description"
 							required
 						/>
 					</div>
-					<div className='input-block'>
-						<label>Task Description: </label>
+					<div className="input-block">
+						<label htmlFor="task-date">
+							Task Due Date:{' '}
+						</label>
 						<input
-							type='text'
-							name='task-desc'
-							placeholder='Task Description'
-							ref={taskDescRef}
+							type="date"
+							name="task-date"
+							value={dueDate}
+							onChange={onChangeHandler('dueDate')}
 							required
 						/>
 					</div>
-					<div className='input-block'>
-						<label>Task Due Date: </label>
-						<input
-							ref={dueDateRef}
-							type='date'
-							name='task-desc'
-							required
-						/>
-					</div>
-					<div className='input-block'>
-						<label>Task Type: </label>
-						<select ref={taskTagRef}>
-							<option value='Bug'>Bug</option>
-							<option value='Feature'>Feature</option>
-							<option value='Story'>Story</option>
+					<div className="input-block">
+						<label htmlFor="task-tag">Task Type: </label>
+						<select
+							name="task-tag"
+							value={taskTag}
+							onChange={onChangeHandler('taskTag')}
+						>
+							{Object.values(TaskType).map(
+								(type, key) => (
+									<option value={type} key={key}>
+										{type}
+									</option>
+								)
+							)}
 						</select>
 					</div>
 					<input
-						type='button'
-						value='Add Task'
-						className='add-task-btn'
+						type="button"
+						value="Add Task"
+						className="add-task-btn"
 						onClick={addTask}
 					/>
 				</form>
@@ -92,4 +99,12 @@ const PopUp = ({ setOpenPopUp, addTodoTask }) => {
 	);
 };
 
+PopUp.propTypes = {
+	setOpenPopUp: PropTypes.func.isRequired,
+	addTodoTask: PropTypes.func.isRequired
+};
+PopUp.defaultProps = {
+	setOpenPopUp: undefined,
+	addTodoTask: undefined
+};
 export default PopUp;

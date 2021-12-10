@@ -1,16 +1,18 @@
 import React from 'react';
-import Card from './Card';
+import Card from 'Components/Card';
+import PropTypes from 'prop-types';
+import { ColumnType } from 'utils/constants';
 
-const ColumnBody = ({ addTaskButton, tasks = [], taskColumn }) => {
+const ColumnBody = ({ addTaskButton, tasks, taskColumn }) => {
 	return (
-		<div className='col-body'>
+		<div className="col-body">
 			{addTaskButton ? addTaskButton() : null}
 			{tasks.map((task, key) => (
 				<Card
 					key={key}
 					taskNumber={task.taskNumber}
 					taskDesc={task.taskDesc}
-					type={task.type}
+					taskType={task.type}
 					taskColumn={taskColumn}
 				/>
 			))}
@@ -18,4 +20,15 @@ const ColumnBody = ({ addTaskButton, tasks = [], taskColumn }) => {
 	);
 };
 
+ColumnBody.propTypes = {
+	addTaskButton: PropTypes.func,
+	tasks: PropTypes.array,
+	taskColumn: PropTypes.oneOf(Object.values(ColumnType))
+};
+
+ColumnBody.defaultProps = {
+	addTaskButton: undefined,
+	tasks: [],
+	taskColumn: ColumnType.TODO
+};
 export default ColumnBody;
